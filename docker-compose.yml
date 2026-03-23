@@ -1,0 +1,14 @@
+services:
+  app:
+    build: .
+    ports:
+      - "8080:8080"
+
+  k6:
+    image: grafana/k6
+    command: run /scripts/test-compose.js
+    volumes:
+      - ./:/scripts
+    depends_on:
+
+      - app
